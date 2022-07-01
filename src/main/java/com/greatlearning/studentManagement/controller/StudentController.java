@@ -21,35 +21,35 @@ public class StudentController {
 	StudentService studentService;
 	
 	@RequestMapping("/list")
-	public String getAllBooks(Model theModel) {
+	public String getAllStudent(Model theModel) {
 		List<Student> res = studentService.getAllStudent();
 		theModel.addAttribute("studentModel", res);
 		return "studentlist";
 	}
 	
 	@RequestMapping("/add")
-	public String addBook(Model theModel) {
+	public String addStudent(Model theModel) {
 		Student student = new Student();
 		theModel.addAttribute("student", student);
 		return "savestudent";
 	}
 	
 	@RequestMapping("/update")
-	public String updateBook(@RequestParam("id") int id,Model theModel) {
+	public String updateStudent(@RequestParam("id") int id,Model theModel) {
 		Student student = studentService.getStudentById(id);
 		theModel.addAttribute("student", student);
 		return "savestudent";
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteBook(@RequestParam("id") int id) {
+	public String deleteStudent(@RequestParam("id") int id) {
 		Student student = studentService.delete(id);
 		System.out.println("Deleted student Id" + student.getStudentId());
 		return "redirect:/students/list";
 	}
 	
 	@PostMapping("/save")
-	public String saveBook(@RequestParam("id") int id, @RequestParam("name") String name,
+	public String saveStudent(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("department") String department, @RequestParam("country") String country) {
 		
 		Student student;
